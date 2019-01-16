@@ -1,0 +1,39 @@
+type User {
+  id: ID! @unique
+  email: String! @unique
+  password: String!
+  name: String!
+  inviteToken: String
+  inviteAccepted: Boolean! @default(value: "true")
+  emailConfirmed: Boolean! @default(value: "true")
+  emailConfirmToken: String
+  resetToken: String
+  resetExpires: DateTime
+  deletedAt: DateTime
+  lastLogin: DateTime
+  joinedAt: DateTime!
+  isSuper: Boolean! @default(value: "false")
+}
+
+type Location {
+  lat: Float!
+  lng: Float!
+}
+
+type Place {
+  id: ID! @unique
+  placeId: String! @unique
+  location: Location!
+  name: String!
+  rating: Float!
+  types: [String]!
+  priceLevel: Int!
+  totalRatings: Int!
+}
+
+type Favorite {
+  id: ID! @unique
+  place: Place!
+  user: User!
+  createdAt: DateTime!
+}

@@ -1,0 +1,98 @@
+# source: http://localhost:4000
+# import Favorite from 'generated/prisma.graphql'
+# timestamp: Tue Jan 15 2019 03:15:11 GMT-0400 (-04)
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+scalar DateTime
+
+input InputLocation {
+  lat: Float!
+  lng: Float!
+}
+
+input SignupInput {
+  email: String!
+  password: String!
+  name: String!
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+type Place implements Node {
+  id: ID!
+  placeId: String!
+  location: Location!
+  name: String!
+  rating: Float!
+  types: [String!]!
+  priceLevel: Int!
+  totalRatings: Int!
+  distance: Int
+}
+
+type User implements Node {
+  id: ID!
+  email: String!
+  name: String!
+  inviteAccepted: Boolean!
+  emailConfirmed: Boolean!
+  deletedAt: DateTime
+  lastLogin: DateTime
+  joinedAt: DateTime!
+  isSuper: Boolean!
+}
+
+
+type Location {
+  lat: Float!
+  lng: Float!
+}
+
+enum PLACE_SORT {
+  prominence
+  distance
+}
+
+enum FAVORITE_SORT {
+  prominence
+  distance
+  dateAdded
+}
+
+enum TYPE_SORT {
+  asc
+  desc
+}
+
+type PlaceResponse {
+  places: [Place!]
+  nextPageToken: String
+}
+
+type FavoriteResponse {
+  place: Place,
+  user: User
+  createdAt: DateTime
+}
+
+type Query {
+  getPlaces(location: InputLocation!, query: String, sortBy: PLACE_SORT = prominence, nextPageToken: String, distance: Int = 500): PlaceResponse
+  getPlace(location: InputLocation, placeId: String!): Place
+  getFavorites(sortBy: FAVORITE_SORT, sortType: TYPE_SORT, limit: Int=10, page: Int, location: InputLocation ): [FavoriteResponse]
+  currentUser: User
+}
+
+type Mutation {
+  addFavorite(placeId: String!): FavoriteResponse
+  deleteFavorite(placeId: String!): FavoriteResponse
+  signup(data: SignupInput!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}

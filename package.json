@@ -1,0 +1,45 @@
+{
+  "name": "graphql-places",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "standard --fix",
+    "start": "babel-node index.js",
+    "start:dev": "nodemon --exec babel-node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/maps": "^0.5.5",
+    "apollo-server": "^2.3.1",
+    "dotenv": "^6.2.0",
+    "email-templates": "^5.0.3",
+    "georedis": "^3.1.1",
+    "graphql-authentication": "^0.5.5",
+    "graphql-authentication-prisma": "^0.1.5",
+    "graphql-import": "^0.7.1",
+    "graphql-middleware": "^3.0.0",
+    "graphql-shield": "^5.1.0",
+    "graphql-yoga": "^1.16.9",
+    "lodash": "^4.17.11",
+    "prisma-binding": "^2.2.14",
+    "redis": "^2.8.0",
+    "util": "^0.11.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "easygraphql-tester": "^3.0.4",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9",
+    "regenerator-runtime": "^0.13.1",
+    "standard": "^12.0.1"
+  }
+}
