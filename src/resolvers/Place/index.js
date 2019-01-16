@@ -1,9 +1,8 @@
 import GoogleMaps from '../../services/googlemaps'
 import { placesRequestAdapter, placeRequestAdapter } from './adapter'
 
-const googleMapsService = new GoogleMaps()
-
 const getPlaces = async (_, request) => {
+  const googleMapsService = new GoogleMaps()
   const query = placesRequestAdapter(request)
   const places = await googleMapsService.getPlaces(query, request.location)
 
@@ -11,6 +10,7 @@ const getPlaces = async (_, request) => {
 }
 
 export const getPlace = async (_, request) => {
+  const googleMapsService = new GoogleMaps()
   const { placeId, location } = placeRequestAdapter(request)
   const place = await googleMapsService.getPlace(placeId, location)
 

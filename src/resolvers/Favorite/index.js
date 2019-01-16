@@ -28,11 +28,18 @@ const getFavorites = async (_, request, context, info) => {
   return adaptFavorites(favorites, request)
 }
 
+const deleteFavorite = async (_, request, context, info) => {
+  return context.db.mutation.deleteFavorite({
+    where: { id: request.favoriteId }
+  }, info)
+}
+
 export default {
   Query: {
     getFavorites
   },
   Mutation: {
-    addFavorite
+    addFavorite,
+    deleteFavorite
   }
 }

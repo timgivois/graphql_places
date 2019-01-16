@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "standard --fix",
     "start": "babel-node index.js",
     "start:dev": "nodemon --exec babel-node index.js"
@@ -12,6 +12,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/jest.init.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/",
+      "/services/"
+    ]
+  },
   "dependencies": {
     "@google/maps": "^0.5.5",
     "apollo-server": "^2.3.1",
@@ -36,6 +46,7 @@
     "@babel/preset-env": "^7.2.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
+    "babel-polyfill": "^6.26.0",
     "easygraphql-tester": "^3.0.4",
     "jest": "^23.6.0",
     "nodemon": "^1.18.9",

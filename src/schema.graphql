@@ -78,7 +78,8 @@ type PlaceResponse {
 }
 
 type FavoriteResponse {
-  place: Place,
+  id: ID
+  place: Place
   user: User
   createdAt: DateTime
 }
@@ -92,7 +93,7 @@ type Query {
 
 type Mutation {
   addFavorite(placeId: String!): FavoriteResponse
-  deleteFavorite(placeId: String!): FavoriteResponse
+  deleteFavorite(favoriteId: String!): FavoriteResponse
   signup(data: SignupInput!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
 }

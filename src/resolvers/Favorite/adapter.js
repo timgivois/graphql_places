@@ -39,11 +39,10 @@ export const adaptFavorites = (favorites, request) => {
 
   if (request.sortBy === 'distance' && request.location) {
     favorites.forEach(favorite => {
-      console.log(favorite)
       favorite.place.distance = getDistanceFromLatLonInM(favorite.place.location.lat, favorite.place.location.lng, request.location.lat, request.location.lng)
     })
     return orderBy(favorites, ['place.distance'], request.sortType)
   }
 
-  return favorites || []
+  return favorites
 }
